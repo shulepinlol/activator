@@ -8,8 +8,8 @@ end
 module("SActivator", package.seeall, log.setup)
 clean.module("SActivator", clean.seeall, log.setup)
 
-local VERSION = "1.0.4"
-local LAST_UPDATE = "10/01/2022"
+local VERSION = "1.0.5"
+local LAST_UPDATE = "22, July 2022"
 
 ----------------------------------------------------------------------------------------------
 
@@ -196,10 +196,10 @@ local ItemData = {
     [ItemID.ShurelyasBattlesong]            = { Type = ItemType.Offensive,  CastType = CastType.Active,         CastRange = 0,      EffectRadius = 1000,Name = "Shurelya's Battlesong",     Config = { AddOnlyCombo = true, AddAllyCount = true } },
 
     --// Consumable Items //--
-    [ItemID.RefillablePotion]               = { Type = ItemType.Consumable, CastType = CastType.Active,         CastRange = 0,      EffectRadius = 0,   Name = "Refillable Potion",         Config = { AddOwnMaxHealth = true, DefaultHealthValue = 40 } },
+    [ItemID.RefillablePotion]               = { Type = ItemType.Consumable, CastType = CastType.Active,         CastRange = 0,      EffectRadius = 0,   Name = "Refillable Potion",         Config = { AddOwnMaxHealth = true, DefaultHealthValue = 80 } },
     [ItemID.CorruptingPotion]               = { Type = ItemType.Consumable, CastType = CastType.Active,         CastRange = 0,      EffectRadius = 0,   Name = "Corrupting Potion",         Config = { AddOnlyCombo = true, AddOwnMaxHealth = true, DefaultHealthValue = 40 } },
     [ItemID.TotalBiscuitOfEverlastingWill]  = { Type = ItemType.Consumable, CastType = CastType.Active,         CastRange = 0,      EffectRadius = 0,   Name = "Total Biscuit",             Config = { AddOnlyCombo = true, AddOwnMaxHealth = true, DefaultHealthValue = 40 } },
-    [ItemID.HealthPotion]                   = { Type = ItemType.Consumable, CastType = CastType.Active,         CastRange = 0,      EffectRadius = 0,   Name = "Health Potion",             Config = { AddOnlyCombo = true, AddOwnMaxHealth = true, DefaultHealthValue = 40 } },
+    [ItemID.HealthPotion]                   = { Type = ItemType.Consumable, CastType = CastType.Active,         CastRange = 0,      EffectRadius = 0,   Name = "Health Potion",             Config = { AddOnlyCombo = true, AddOwnMaxHealth = true, DefaultHealthValue = 70 } },
 
     --// Instant Items //--
     [ItemID.OraclesExtract]                 = { Type = ItemType.Instant,    CastType = CastType.Active,         CastRange = 0,      EffectRadius = 0,   Name = "Oracle's Extract",          Config = {} },
@@ -360,6 +360,10 @@ local LevelPresets = {
     ["Bard"] = {
         ["mostUsed"] = {"Q", "W", "E", "Q", "Q", "R", "Q", "W", "Q", "W", "R", "W", "W", "E", "E", "R", "E", "E"},
         ["highestRate"] = {"Q", "W", "E", "W", "Q", "R", "Q", "Q", "Q", "W", "R", "W", "W", "E", "E", "R", "E", "E"}
+    },
+    ["Belveth"] = {
+        ["mostUsed"] = {"Q", "E", "W", "Q", "Q", "R", "Q", "E", "Q", "E", "R", "E", "E", "W", "W", "R", "W", "W"},
+        ["highestRate"] = {"Q", "E", "W", "Q", "Q", "R", "Q", "E", "Q", "E", "R", "E", "E", "W", "W", "R", "W", "W"}
     },
     ["Blitzcrank"] = {
         ["mostUsed"] = {"Q", "E", "W", "Q", "Q", "R", "Q", "E", "Q", "E", "R", "E", "E", "W", "W", "R", "W", "W"},
@@ -641,6 +645,10 @@ local LevelPresets = {
         ["mostUsed"] = {"Q", "W", "E", "Q", "Q", "R", "Q", "E", "Q", "E", "R", "E", "E", "W", "W", "R", "W", "W"},
         ["highestRate"] = {"Q", "W", "E", "Q", "Q", "R", "Q", "E", "Q", "E", "R", "E", "W", "E", "W", "R", "W", "W"}
     },
+    ["Nilah"] = {
+        ["mostUsed"] = {"Q", "E", "W", "Q", "Q", "R", "Q", "E", "Q", "E", "R", "E", "E", "W", "W", "R", "W", "W"},
+        ["highestRate"] = {"Q", "E", "W", "Q", "Q", "R", "Q", "E", "Q", "E", "R", "E", "E", "W", "W", "R", "W", "W"}
+    },
     ["Nocturne"] = {
         ["mostUsed"] = {"Q", "W", "E", "Q", "Q", "R", "Q", "E", "Q", "E", "R", "E", "E", "W", "W", "R", "W", "W"},
         ["highestRate"] = {"Q", "W", "Q", "E", "Q", "R", "Q", "E", "Q", "E", "R", "E", "E", "W", "W", "R", "W", "W"}
@@ -696,6 +704,10 @@ local LevelPresets = {
     ["Rell"] = {
         ["mostUsed"] = {"W", "E", "Q", "W", "W", "R", "W", "E", "W", "E", "R", "E", "E", "Q", "Q", "R", "Q", "Q"},
         ["highestRate"] = {"W", "E", "Q", "Q", "Q", "R", "Q", "E", "Q", "E", "R", "E", "E", "W", "W", "R", "W", "W"}
+    },
+    ["Renata"] = {
+        ["mostUsed"] = {"E", "Q", "W", "E", "E", "R", "E", "W", "E", "W", "R", "W", "W", "Q", "Q", "R", "Q", "Q"},
+        ["highestRate"] = {"E", "Q", "W", "E", "E", "R", "E", "W", "E", "W", "R", "W", "W", "Q", "Q", "R", "Q", "Q"}
     },
     ["Renekton"] = {
         ["mostUsed"] = {"Q", "E", "W", "Q", "Q", "R", "Q", "E", "Q", "E", "R", "E", "E", "W", "W", "R", "W", "W"},
@@ -2823,7 +2835,6 @@ local OnLoad = function()
         "Activator Settings",
         function()
             Menu.Checkbox("S_Activator_Disable", "Disable Activator", false)
-            Menu.Separator()
             if ActivatorDisabled and not GetMenuValue("S_Activator_Disable") then
                 Menu.ColoredText("Now Press F5 To Load Activator!", 0xFF0000FF, true)
                 return true
@@ -2837,7 +2848,7 @@ local OnLoad = function()
                 return true
             end
 
-            Menu.Text("Item Activator", true)
+            Menu.Separator("Item Activator", true)
 
             Menu.NewTree(
                 "S_Activator_Cleanse",
@@ -2879,7 +2890,7 @@ local OnLoad = function()
                 end
             )
 
-            Menu.Text("Summoner Activator", true)
+            Menu.Separator("Summoner Activator", true)
             AddToMenu(nil, true)
             Menu.NewTree("S_Activator_Summoners_Smite", "Smite", function()
                 local id = "S_Activator_Summoners_Smite"
@@ -2897,7 +2908,7 @@ local OnLoad = function()
                 end)
             end)
 
-            Menu.Text("Other Features", true)
+            Menu.Separator("Other Features", true)
 
             Menu.NewTree(
                 "S_Activator_BlockMinion",
@@ -3002,10 +3013,6 @@ local OnLoad = function()
                         Menu.Checkbox(id .. "_Enabled", "Use For " .. myHero.CharName, true)
                         Menu.Dropdown(id .. "_Mode", "Level Mode", 0, { "Highest WinRate", "Most Popular", "Custom Order" })
 
-                        Menu.Text("")
-                        Menu.Separator()
-                        Menu.Text("")
-
                         local order = ""
                         local mode = GetMenuValue(id .. "_Mode")
                         if mode < 2 then
@@ -3022,22 +3029,16 @@ local OnLoad = function()
                             Menu.Slider(id .. "_CustomW", "W", 3, 1, 4)
                             Menu.Slider(id .. "_CustomE", "E", 4, 1, 4)
                         end
-                        Menu.Text("")
-                        Menu.Separator()
-                        Menu.Text("")
                         Menu.Slider(id .. "_MinLevel", "Start At Level", 2, 1, 18)
                         Menu.Slider("S_Activator_AutoLevel_Delay", "Delay (ms)", 100, 0, 5000)
                     end
                 end
             )
 
-            Menu.Separator()
-
-            Menu.Text("Version: " .. VERSION)
+            Menu.Separator("Version: " .. VERSION)
             Menu.Text("Last Update: " .. LAST_UPDATE)
             Menu.Text("Author: Shulepin")
 
-            Menu.Separator()
             MenuIsLoading = false
         end
     )
